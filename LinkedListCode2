@@ -1,0 +1,66 @@
+#include<iostream>
+using namespace std;
+//2.Insert any data <int> at the beginning of a Singly Linked List .
+struct node{
+    int data;
+    node* next;
+    node(int d){
+        data=d;
+        next=NULL;
+    }
+    
+};
+
+void printNodeData(node* head);
+
+node* insertAtBeg(node* head,int x);
+
+node* head=NULL;
+node* tail=NULL;
+
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;++i){  
+        int val;
+        cin>>val;
+        node* current=new node(val);
+       if(head==NULL){
+            tail=head=current;
+        }
+       else{
+           tail->next=current;
+           tail=current;
+       }
+    }
+    printNodeData(head);
+    cout<<"please enter the number you want to insert at the beginning"<<endl;
+    int x;cin>>x;
+    node* atHead=insertAtBeg(head,x);
+    printNodeData(atHead);
+
+    return 0;
+}
+
+void printNodeData(node* head){
+    
+    node*current=head;
+    while(current!=NULL){
+        cout<<current->data<<" ";
+        current=current->next;
+
+    }
+
+    return;
+}
+
+node* insertAtBeg(node* head,int x){
+
+   node* current=new node(x);
+   current->next=head;
+   return current;
+
+
+
+}
