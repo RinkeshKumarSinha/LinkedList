@@ -1,0 +1,67 @@
+#include <iostream>
+//search in a singly LL iterative Approach
+using namespace std;
+
+struct node{
+    int data;
+    node* next;
+    node(int d){
+        data=d;
+        next=NULL;
+    }
+};
+
+void printLinkedList(node* head){
+    node* current=head;
+    while(current!=NULL){
+        cout<<current->data<<" ";
+        current=current->next;
+    }
+}
+
+int searchSinglyLL(node*head,int d){
+    node* current=head;
+    int i=1;
+    while(current!=NULL){
+        if(current->data==d)return i;
+        else{
+            i++;
+            current=current->next;
+        }
+    }
+    return -1;
+}
+
+
+
+
+
+node *head=NULL;
+node *tail=NULL;
+
+int main(){
+   
+   int n;
+   cin>>n;
+   for(int i=0;i<n;i++){
+    int val;
+    cin>>val;
+    node* current=new node(val);
+    if(head==NULL){
+        tail=head=current;
+    }
+    else{
+       tail->next=current;
+       tail=current;
+    }
+   }
+
+    printLinkedList(head);
+
+    cout<<"enter the data to be searched: "<<" ";
+    int d1;
+    cin>>d1;
+    cout<<searchSinglyLL(head,d1);
+
+    return 0;
+}
