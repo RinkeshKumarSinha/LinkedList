@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+//delete the first node of a singly LL
+struct node{
+    int data;
+    node* next;
+    node(int d){
+        data=d;
+        next=NULL;
+    }
+};
+
+void printLinkedList(node* head){
+    node* current=head;
+    while(current!=NULL){
+        cout<<current->data<<" ";
+        current=current->next;
+    }
+}
+
+int searchSinglyLL(node*head,int d){
+    node* current=head;
+    int i=1;
+    while(current!=NULL){
+        if(current->data==d)return i;
+        else{
+            i++;
+            current=current->next;
+        }
+    }
+    return -1;
+}
+
+
+node* deleteAtBeg(node* head){
+       node*current=head;
+       if(current==NULL)return current;
+       else{
+         node*temp=current->next;
+         return temp;
+       }
+     return current;
+}
+
+
+
+
+node *head=NULL;
+node *tail=NULL;
+
+int main(){
+   
+   int n;
+   cin>>n;
+   for(int i=0;i<n;i++){
+    int val;
+    cin>>val;
+    node* current=new node(val);
+    if(head==NULL){
+        tail=head=current;
+    }
+    else{
+       tail->next=current;
+       tail=current;
+    }
+   }
+
+    printLinkedList(head);
+
+    cout<<"after deleting the first node: "<<"\n";
+    node* del=deleteAtBeg(head);
+    printLinkedList(del);
+
+    return 0;
+}
