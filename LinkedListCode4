@@ -1,0 +1,71 @@
+#include <iostream>
+//insert at given position of a singly Linked List
+using namespace std;
+
+struct node{
+    int data;
+    node* next;
+    node(int d){
+        data=d;
+    }
+};
+
+void printLinkedList(node* head){
+    node* current=head;
+    while(current!=NULL){
+        cout<<current->data<<" ";
+        current=current->next;
+    }
+}
+
+node* insertAtGivenPos(node* head,int d,int pos){
+    node* current=head;
+    node*temp=new node(d);
+    if(pos==1){
+        temp->next=head;
+        return temp;
+    }
+   for(int i=0;i<pos-2&&current!=NULL;i++){
+    current=current->next;
+   }
+   if(current==NULL)return head;
+
+   temp->next=current->next;
+   current->next=temp;
+   
+   return head;
+    
+}
+
+
+node *head=NULL;
+node *tail=NULL;
+
+int main(){
+   
+   int n;
+   cin>>n;
+   for(int i=0;i<n;i++){
+    int val;
+    cin>>val;
+    node* current=new node(val);
+    if(head==NULL){
+        tail=head=current;
+    }
+    else{
+       tail->next=current;
+       tail=current;
+    }
+   }
+
+    printLinkedList(head);
+
+    cout<<"'enter pos and data->'"<<" ";
+    int pos;
+    int d1;
+    cin>>pos>>d1;
+
+    node* modifiedNode=insertAtGivenPos(head,d1,pos);
+    printLinkedList(modifiedNode);
+    return 0;
+}
